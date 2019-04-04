@@ -1,0 +1,91 @@
+DateOfBirth
+...........
+
+Method1:
+
+
+1-implement the class DatePickerDialog.ondateSetListner
+2-create the Instance of calender to get the present year
+3-onClick create DatePickerDialong by passing the necessary parameters and show()
+4-onDateSet() method set the values to the view using StringBuffer
+
+code:
+.....
+
+filed variable
+..............
+
+    private int year, month, day;
+    private Calendar calendar;
+
+
+onCreate()
+...........
+ calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+
+onClcik()
+.........
+
+                new DatePickerDialog(ctx, (DatePickerDialog.OnDateSetListener) mContext, year, month, day).show();
+
+onDateSet()
+...........
+
+TextView.setText(new StringBuffer().append(i1).append("/").append(i2).append("/").append(i3));//format for setting in textview
+
+
+
+      // format while sending data to server based on requirment.
+
+        DOB = year + "-" + month + "-" + day;
+
+
+
+
+
+Method 2:
+
+1-declare the Calender.getInstance as filed variable
+2-create a construcutor for DatePickerDialong.onDateSetListner(){}
+3-onClick create DatePickerDialog by passing the parameter
+
+code
+....
+
+    final Calendar myCalendar = Calendar.getInstance();
+
+
+
+
+    tv_dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(RegisterActivity.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+
+  final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                String myFormat = "MM/dd/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+//
+        tv_dob.setText(sdf.format(myCalendar.getTime()));
+//                
+            }
+        };
+

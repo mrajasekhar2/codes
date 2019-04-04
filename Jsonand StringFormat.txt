@@ -1,0 +1,51 @@
+sending data to server:
+.......................
+
+
+String Format:
+..............
+
+  String data = "";
+
+                try {
+
+                    data = URLEncoder.encode("user_id", "UTF-8") + "=" + URLEncoder.encode(User_id, "UTF-8") + "&";
+                   data += URLEncoder.encode("comment", "UTF-8") + "=" + URLEncoder.encode(edPMessagenew.getText().toString().trim(), "UTF-8");
+                   
+
+                      Asyntask asyntask = new Asyntask(ctx, new URL(Constants.base_url + Constants.postimage_url));
+                          asyntask.execute(data);
+                    
+                } catch (MalformedURLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+
+Json Format:
+............
+
+  String json = "";
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+              jsonObject.accumulate("UserID", UserID);
+              jsonObject.accumulate("Login_Uid", user_id);
+              jsonObject.accumulate("token", token);
+              jsonObject.accumulate("PostID", PostID);
+
+              json = jsonObject.toString();
+
+              String data = "{" + " \"data\" " + ":" + json + "}";
+
+
+               Asyntask asynce = new Asyntask(ctx, new URL(Constants.base_url + Constants.ViewPostdetails_url));
+                asynce.execute(data);
+           
+        } catch (JSONException e1) {
+            e1.printStackTrace();
+        }
+
+

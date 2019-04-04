@@ -1,0 +1,8 @@
+Picker:
+https://developer.android.com/guide/topics/ui/controls/pickers
+
+
+RadioButton
+...........
+
+https://developer.android.com/guide/topics/ui/controls/radiobutton

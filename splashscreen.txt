@@ -1,0 +1,92 @@
+SplashScreen:
+.................
+method1:
+
+1-use thread handler in onCreate() method
+
+
+basic code:
+.............
+
+
+  new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+
+            //code to go to next activity
+
+             }
+            }, 100);
+
+
+
+
+
+code1:
+
+  new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+
+//                if (!emp_id.isEmpty()) {
+//                    Intent in = new Intent(ctx, Home.class);
+//                    startActivity(in);
+//                    finish();
+//                } else {
+                Intent in = new Intent(ctx, LoginActivity.class);
+                startActivity(in);
+                finish();
+//                }
+            }
+        }, 100);
+
+
+code 2:
+.......
+
+
+ new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                finish();
+                new DbCheck().execute();
+            }
+        }, SPLASH_TIME_OUT);
+
+
+
+
+
+private class DbCheck extends AsyncTask<String,String,String> {
+        @Override
+        protected String doInBackground(String... params) {
+            // TODO Auto-generated method stub
+            DataBase_Helper dh = new DataBase_Helper(SplashScreen.this);
+            int c = dh.getUserCount();
+            if (c == 0) {
+                return "0";
+            } else {
+                return "1";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+           
+            if (result != null) {
+                if (result.equals("0")) {
+                    finish();
+                    startActivity(new Intent(SplashScreen.this, Login_page.class));
+                } else {
+                    finish();
+                    startActivity(new Intent(SplashScreen.this, Home_page.class));
+                }
+            } else {
+            }
+        }
+
+
+    }
+

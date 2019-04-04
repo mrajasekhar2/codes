@@ -1,0 +1,41 @@
+RadioButton:
+............
+
+
+Method 1:
+
+    RadioGroup    rdgrp_gender = findViewById(R.id.rdgrp_gender);
+
+
+
+   int selectedId = rdgrp_gender.getCheckedRadioButtonId();
+        selectedgender = (RadioButton) findViewById(selectedId);
+        if (selectedgender.getText().equals("Male")) {
+            gender = "M";
+        } else {
+            gender = "F";
+        }
+
+
+Method 2:
+
+
+add the onClick attribute in the xml file of radiobutton
+
+
+public void onRadioButtonClicked(View view) {
+    // Is the button now checked?
+    boolean checked = ((RadioButton) view).isChecked();
+
+    // Check which radio button was clicked
+    switch(view.getId()) {
+        case R.id.radio_pirates:
+            if (checked)
+                // Pirates are the best
+            break;
+        case R.id.radio_ninjas:
+            if (checked)
+                // Ninjas rule
+            break;
+    }
+}

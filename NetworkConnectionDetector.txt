@@ -1,0 +1,69 @@
+checking whether internet in connected or not
+.............................................
+
+
+
+isNetworkConnected(ctx);
+
+
+code1:
+.....
+ public static boolean isNetworkConnected(Context ctx) {
+        if (ctx == null) {
+            return false;
+        }
+        ConnectivityManager cm = (ConnectivityManager) ctx.getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (wifiNetwork != null && wifiNetwork.isConnected()) {
+            return true;
+        }
+
+        NetworkInfo mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (mobileNetwork != null && mobileNetwork.isConnected()) {
+            return true;
+        }
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null && activeNetwork.isConnected()) {
+            return true;
+        }
+        return false;
+    }
+
+
+mETHOD2:
+
+
+boolean isInternentAvailable = ConnectionDetector.getInstance().isConnectingToInternet(mContext);
+
+
+
+CODE2:
+......
+public class ConnectionDetector {
+
+    private static ConnectionDetector obj;
+    boolean connected = false;
+
+
+    public static synchronized ConnectionDetector getInstance() {
+        if (obj == null)
+            obj = new ConnectionDetector();
+        return obj;
+    }
+
+    public boolean isConnectingToInternet(Context _context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) _context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED)
+            //we are connected to a network
+            connected = true;
+        else
+            connected = false;
+        return connected;
+    }
+}
+
+

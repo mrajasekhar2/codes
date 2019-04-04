@@ -1,0 +1,62 @@
+implementing baseAdapter
+........................
+
+1-create a class and extend BaseAdapter
+2-implement the methods
+3-create a ViewHolder class to declare the fileds
+4-if the View is null set the tag else get the tag
+5-return the count size from the list
+
+
+code:
+.....
+
+public class MyAdapter extends BaseAdapter {
+    Context context;
+
+    @Override
+    public int getCount() {
+        return 0;
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return i;
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return 0;
+    }
+
+    class ViewHolder {
+
+        //declare the views ie declared in the layout
+
+    }
+
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+
+        ViewHolder holder;
+        View v = view;
+
+        if (view == null) {
+
+            holder = new ViewHolder();
+             v = LayoutInflater.from(view.getContext()).inflate(R.layout.activity_main, viewGroup, false);
+
+            //get the views using findViewByid and intilalize the views from viewholder
+
+            v.setTag(holder);
+
+        } else {
+            holder = (ViewHolder) view.getTag();
+        }
+
+
+// set the values to views
+
+        return v;
+    }
+}

@@ -1,0 +1,58 @@
+Implementing RecyclerViewAdapter
+................................
+
+1-create a class that extend RecyclerView.Adapter<classname.ViewHolder>
+2-implement the method of recyclerViewHolder and then create the inner class for ViewHolder that extends RecyclerView.ViewHolder
+3-onCreateViewHolder() method inflate the layout and create the construtor for ViewHolder and return the refernce of ViewHolder
+4-position individual item using layout manager
+
+
+
+code:
+
+
+    RecyclerView    recyclerview= findViewById(R.id.recyclerview);
+
+
+ LinearLayoutManager mLayoutManager = new LinearLayoutManager(ctx,                                                LinearLayoutManager.VERTICAL, false);
+
+        notificationlist.setLayoutManager(mLayoutManager);
+
+
+code:
+.....
+
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+
+
+    @Override
+    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main, parent, false);
+        
+        ViewHolder holder= new ViewHolder(v);
+        
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder( MyAdapter.ViewHolder holder, int position) {
+
+
+    }
+
+    @Override
+    public int getItemCount() {
+
+        return 0;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
+}
