@@ -21,6 +21,20 @@ android {
 
 
 
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/imageView"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@mipmap/imgpsh_fullsize"
+            app:civ_border_color="@color/darkgreen"
+            app:civ_border_width="1dp"
+            app:civ_fill_color="@color/layout_bg" />
+
+
+
+
+
+
 
 
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
