@@ -1,0 +1,25 @@
+     final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
+            AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+            builder.setTitle("Add Photo!");
+            builder.setItems(items, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int item) {
+                    if (items[item].equals("Take Photo")) {
+                        userChoosenTask = "Take Photo";
+
+                        captureImage(REQUEST_CAMERA_VOTER);
+
+
+                    } else if (items[item].equals("Choose from Library")) {
+                        userChoosenTask = "Choose from Library";
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+                            galleryIntent(SELECT_FILE_PASSPORT);
+
+                        } else if (items[item].equals("Cancel")) {
+                            dialog.dismiss();
+                        }
+                    }
+                }
+            });
+            builder.show();
