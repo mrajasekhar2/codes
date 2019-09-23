@@ -1,0 +1,22 @@
+  ArrayAdapter shopAdapter = new ArrayAdapter(AEPSMahagramActivity.this, android.R.layout.simple_spinner_item, shopArrayList);
+        shopAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        sp_shop_type.setAdapter(shopAdapter);
+
+        sp_shop_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                shopType = shopArrayList.get(i);
+                if (shopType.equalsIgnoreCase("Others")) {
+                    et_shop_type.setVisibility(View.VISIBLE);
+                } else {
+                    et_shop_type.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
