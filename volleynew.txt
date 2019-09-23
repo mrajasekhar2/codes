@@ -1,0 +1,36 @@
+ RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+
+    StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiClient.BASE_URL + "Gbregister/gobal_register", new Response.Listener<String>() {
+
+        @Override
+        public void onResponse(String response) {
+            Log.e("glob reg response", response.toString());
+            try {
+
+                JSONObject obj = new JSONObject(response);
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }, new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+        }
+    }) {
+        @Override
+        protected Map<String, String> getParams() throws AuthFailureError {
+
+
+            Map<String, String> params = new HashMap<>();
+            params.put("kwikker_id", et_kwikker_id.getSelectedItem().toString().trim());
+            params.put("package_id", "1");
+//            Log.e(TAG, new JSONObject(params).toString());
+            return params;
+        }
+    };
+        requestQueue.add(stringRequest);

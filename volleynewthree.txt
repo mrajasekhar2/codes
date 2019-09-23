@@ -1,0 +1,31 @@
+equest sr = new StringRequest(Request.Method.POST, url , new Response.Listener<String>() {
+        @Override
+        public void onResponse(String response) {
+            Log.d(TAG, response.toString());
+        }
+    }, new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            VolleyLog.d(TAG, "Error: " + error.getMessage());
+            Log.d(TAG, ""+error.getMessage()+","+error.toString());
+        }
+    }){
+        @Override
+        protected Map<String,String> getParams(){
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("id", "28");
+            params.put("value", "1");
+
+            return params;
+        }
+
+        @Override
+        public Map<String, String> getHeaders() throws AuthFailureError {
+            Map<String,String> headers = new HashMap<String, String>();
+            headers.put("Content-Type","application/x-www-form-urlencoded");
+            headers.put("abc", "value");
+            return headers;
+        }
+    };
+
+        AppController.getInstance().addToRequestQue
